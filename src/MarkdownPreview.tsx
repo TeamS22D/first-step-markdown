@@ -50,9 +50,10 @@ const MarkdownPreview = ({ markdown }: { markdown: string }) => {
             return (
               <blockquote
                 style={{
-                  background: "#7afca19b",
+                  background: "#FEF1DB",
                   padding: "1px 15px",
                   borderRadius: "10px",
+                  borderLeft: '5px solid #FBBE8A'
                 }}
                 {...props}
               >

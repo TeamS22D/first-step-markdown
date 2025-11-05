@@ -1,37 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import MarkdownPreview from "../MarkdownPreview/MarkdownPreview";
 import Toolbar from "../Toolbar/Toolbar";
-import * as S from './Markdown.style';
+import * as S from "./Markdown.style";
 
 function Markdown() {
-  const [markdown, setMarkdown] = useState<string>("# 입력해주세요");
-
+  const [markdown, setMarkdown] = useState<string>("# 입력해주세요!");
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMarkdown(e.target.value);
   };
 
-  
-
   return (
-    <>
-      <S.Container>
-        <S.Wrapper>
-          <Toolbar></Toolbar>
-          <S.Textarea
-            value={markdown}
-            onChange={handleChange}
-            placeholder="Markdown 문법으로 작성하세요"
-          />
-        </S.Wrapper>
+    <S.Container>
+      <S.Wrapper>
+        {/* textareaRef를 Toolbar로 전달 */}
+        <Toolbar textareaRef={textareaRef} />
 
-        <S.Preview>
-          <MarkdownPreview markdown={markdown} />
-        </S.Preview>
-      </S.Container>
-    </>
+        <S.Textarea
+          value={markdown}
+          onChange={handleChange}
+          placeholder="Markdown 문법으로 작성하세요"
+          ref={textareaRef}
+        />
+      </S.Wrapper>
+
+      <S.Preview>
+        <MarkdownPreview markdown={markdown} />
+      </S.Preview>
+    </S.Container>
   );
-
 }
 
 export default Markdown;
+
 

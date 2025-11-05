@@ -1,8 +1,12 @@
-import { Bold, Italic, ALargeSmall, List } from 'lucide-react';
-import { useState } from 'react';
+import { Bold, Italic, ALargeSmall, List } from "lucide-react";
+import { useState } from "react";
 import * as S from "./Toolbar.style";
 
-function Toolbar() {
+type ToolbarProps = {
+  textareaRef: React.RefObject<HTMLTextAreaElement>;
+};
+
+function Toolbar({ textareaRef }: ToolbarProps) {
   const [activeIcons, setActiveIcons] = useState<string[]>([]);
 
   const toggleIcon = (iconKey: string) => {
@@ -13,37 +17,59 @@ function Toolbar() {
     );
   };
 
-  
+  const handleInsert = (insertText: string) => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
 
+    const { selectionStart, selectionEnd, value } = textarea;
+    const before = value.substring(0, selectionStart);
+    const selected = value.substring(selectionStart, selectionEnd);
+    const after = value.substring(selectionEnd);
+
+    const newValue = before + insertText + selected + insertText + after;
+    textarea.value = newValue;
+    textarea.focus();
+  };
+
+  
   return (
     <S.ToolbarContainer>
       <S.IconButton
-        active={activeIcons.includes('bold')}
-        onClick={() => 
-            toggleIcon('bold')
-            
-        }
+        active={activeIcons.includes("bold")}
+        onClick={() => {
+          toggleIcon("bold");
+          handleInsert("**");
+        }}
       >
         <Bold />
       </S.IconButton>
 
       <S.IconButton
-        active={activeIcons.includes('italic')}
-        onClick={() => toggleIcon('italic')}
+        active={activeIcons.includes("italic")}
+        onClick={() => {
+          toggleIcon("italic");
+          handleInsert("_");
+        }}
       >
         <Italic />
       </S.IconButton>
 
       <S.IconButton
-        active={activeIcons.includes('list')}
-        onClick={() => toggleIcon('list')}
+        active={activeIcons.includes("list")}
+        onClick={() => {
+          toggleIcon("list");
+          handleInsert("- ");
+        }}
       >
         <List />
       </S.IconButton>
 
       <S.IconButton
-        active={activeIcons.includes('alargesmall')}
-        onClick={() => toggleIcon('alargesmall')}
+        active={activeIcons.includes("alargesmall")}
+        onClick={() => {
+          toggleIcon("alargesmall");
+          handleInsert("# ");
+        }}
       >
         <ALargeSmall />
       </S.IconButton>

@@ -14,7 +14,6 @@ function Markdown() {
   return (
     <S.Container>
       <S.Wrapper>
-        {/* textareaRef를 Toolbar로 전달 */}
         <Toolbar textareaRef={textareaRef} />
 
         <S.Textarea

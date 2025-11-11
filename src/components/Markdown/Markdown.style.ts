@@ -21,16 +21,15 @@ export const Wrapper = styled.div`
 export const Textarea = styled.textarea`
     flex: 1;
     padding: 20px;
-    font-size: 2rem;
+    font-size: 1rem;
     outline: none;
     padding: 3rem;
     padding-top:10rem;
-    font-size: 1rem;
     border: none;
     outline: none;
     resize: none;
     color: #000000;
-    background-color: #D8D8D8;
+    background-color: #FFFFFF;
     height: 95vh;      
 
 

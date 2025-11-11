@@ -10,9 +10,9 @@ function Toolbar({ textareaRef }: ToolbarProps) {
   const [activeIcon, setActiveIcon] = useState<string | null>(null);
 
   const flashIcon = (iconKey: string) => {
-    setActiveIcon(iconKey); // 클릭하면 active 상태로 변경
+    setActiveIcon(iconKey); 
     setTimeout(() => {
-      setActiveIcon(null); // 1초 후 다시 비활성화
+      setActiveIcon(null);
     }, 300);
   };
 
@@ -43,7 +43,7 @@ function Toolbar({ textareaRef }: ToolbarProps) {
   return (
     <S.ToolbarContainer>
       <S.IconButton
-        active={activeIcon === 'bold'}
+        data-active={activeIcon === 'bold'}
         onClick={() => {
           flashIcon("bold");
           handleInsert("**", '2');
@@ -53,7 +53,7 @@ function Toolbar({ textareaRef }: ToolbarProps) {
       </S.IconButton>
 
       <S.IconButton
-        active={activeIcon === "italic"}
+        data-aactive={activeIcon === "italic"}
         onClick={() => {
           flashIcon("italic");
           handleInsert("~~", '2');
@@ -63,7 +63,7 @@ function Toolbar({ textareaRef }: ToolbarProps) {
       </S.IconButton>
 
       <S.IconButton
-        active={activeIcon === "list"}
+        data-aactive={activeIcon === "list"}
         onClick={() => {
           flashIcon("list");
           handleInsert("- ", '1');
@@ -73,7 +73,7 @@ function Toolbar({ textareaRef }: ToolbarProps) {
       </S.IconButton>
 
       <S.IconButton
-        active={activeIcon === "alargesmall"}
+        data-aactive={activeIcon === "alargesmall"}
         onClick={() => {
           flashIcon("alargesmall");
           handleInsert("> ", '1');

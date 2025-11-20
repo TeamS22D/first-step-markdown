@@ -2,22 +2,13 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkGfm from "remark-gfm";
-import styled from "styled-components";
+import * as S from './MardownPreview.style.ts';
 
-const Preview = styled.div`
-  font-size: 1rem;
-  color: #000000;
-  transition: color 0.125s ease-in 0s;
-  line-height: 1.7;
-  letter-spacing: -0.004em;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  max-width: 54rem;
-`;
 
 const MarkdownPreview = ({ markdown }: { markdown: string }) => {
   return (
-    <Preview>
+    <S.Preview>
+
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -49,10 +40,10 @@ const MarkdownPreview = ({ markdown }: { markdown: string }) => {
             return (
               <blockquote
                 style={{
-                  background: "#FEF1DB",
-                  padding: "1px 15px",
-                  borderRadius: "10px",
-                  borderLeft: '5px solid #FBBE8A'
+                  background: "#3f3e3e9b",
+                  padding: "0.5px 16px",
+                  borderRadius: "5px",
+                  color: '#FFFFFF'
                 }}
                 {...props}
               >
@@ -76,15 +67,68 @@ const MarkdownPreview = ({ markdown }: { markdown: string }) => {
               </span>
             );
           },
+          table({ children, ...props }) {
+            return (
+              <table
+                style={{
+                  borderCollapse: "collapse",
+                  width: "100%",
+                  textAlign: "left",
+                }}
+                {...props}
+              >
+                {children}
+              </table>
+            );
+          },
+          th({ children, ...props }) {
+            return (
+              <th
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "8px",
+                  fontWeight: "bold",
+                  background: "#f9f9f9",
+                }}
+                {...props}
+              >
+                {children}
+              </th>
+            );
+          },
+          td({ children, ...props }) {
+            return (
+              <td
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "8px",
+                }}
+                {...props}
+              >
+                {children}
+              </td>
+            );
+          },
+          tr({ children, ...props }) {
+            return (
+              <tr
+                style={{
+                  borderBottom: "1px solid #ccc",
+                }}
+                {...props}
+              >
+                {children}
+              </tr>
+            );
+          },
         }}
       >
         {markdown
-          .replace(/\n/gi, "\n\n")
           .replace(/\*\*/gi, "@$_%!^")
           .replace(/@\$_%!\^/gi, "**")
           .replace(/<\/?u>/gi, "*")}
       </ReactMarkdown>
-    </Preview>
+    </S.Preview>
   );
 };
 

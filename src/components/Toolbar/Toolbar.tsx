@@ -1,4 +1,4 @@
-import { Bold, Italic, ALargeSmall, List } from "lucide-react";
+import { Bold, Italic, Type, List, ListOrdered, Table, SquareMinus } from "lucide-react";
 import { useState } from "react";
 import * as S from "./Toolbar.style";
 
@@ -37,11 +37,22 @@ function Toolbar({ textareaRef }: ToolbarProps) {
       textarea.value = newValue;
       textarea.focus();
     }
+
+
   };
 
   
   return (
     <S.ToolbarContainer>
+      <S.IconButton
+        data-aactive={activeIcon === "type"}
+        onClick={() => {
+          flashIcon("type");
+          handleInsert("# ", '1');
+        }}
+      >
+        <Type />
+      </S.IconButton>
       <S.IconButton
         data-active={activeIcon === 'bold'}
         onClick={() => {
@@ -72,14 +83,33 @@ function Toolbar({ textareaRef }: ToolbarProps) {
         <List />
       </S.IconButton>
 
+    
       <S.IconButton
-        data-aactive={activeIcon === "alargesmall"}
+        data-aactive={activeIcon === "listordered"}
         onClick={() => {
-          flashIcon("alargesmall");
-          handleInsert("> ", '1');
+          flashIcon("listordered");
+          handleInsert("1. ", '1');
         }}
       >
-        <ALargeSmall />
+        <ListOrdered />
+      </S.IconButton>
+      <S.IconButton
+        data-aactive={activeIcon === "table"}
+        onClick={() => {
+          flashIcon("table");
+          handleInsert("/ ", '1');
+        }}
+      >
+        <Table />
+      </S.IconButton>
+      <S.IconButton
+        data-aactive={activeIcon === "squareminus"}
+        onClick={() => {
+          flashIcon("squareminus");
+          handleInsert("---", '1');
+        }}
+      >
+        <SquareMinus />
       </S.IconButton>
     </S.ToolbarContainer>
   );

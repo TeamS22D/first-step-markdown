@@ -1,26 +1,33 @@
 import styled from 'styled-components'
 
+export const Body = styled.div`
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 export const Container = styled.div`
     display: flex;
-    flex-direction: row;
-    height: 100vh;
+    height: 770px;
     color: black;
-    width: 100vw;
+    width: 790px;
     box-sizing: border-box;
-    @media screen and (max-width: 1024px) {
-}
+    border: 1px solid;
+    border-radius: 10px;
+    border: 2px solid #F2F2F2;
 `;
 
 export const Wrapper = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 `
 
 export const Textarea = styled.textarea`
     flex: 1;
-    padding: 20px;
     font-size: 1rem;
     outline: none;
     padding: 3rem;
@@ -30,39 +37,18 @@ export const Textarea = styled.textarea`
     resize: none;
     color: #000000;
     background-color: #FFFFFF;
-    height: 95vh;      
+    height: 100%;      
 
-
-    @media screen and (max-width: 1024px) {
-        max-width: 95%;
-        width: 100%;
-        margin: 0 auto;
-        height: 50vh;
-
-
-}
 
 `;
 
 export const Preview = styled.div`
-    width: 50%;
-    height: 100vh;
-    padding: 20px;
     outline: none;
     flex: 1;
     padding: 3rem;
     padding-top:8rem;
-    overflowY: auto;
-    border-left: 2px solid #444;
-
-    @media screen and (max-width: 1024px) {
-        max-width: 95%;
-        width: 100%;
-        margin: 0 auto;
-        height: 50vh;
-
-
-  }
+    overflow-y: auto;
+    border-left: 2px solid #F2F2F2;
 
 
 `;

@@ -3,6 +3,7 @@ import MarkdownPreview from "../MarkdownPreview/MarkdownPreview";
 import Toolbar from "../Toolbar/Toolbar";
 import * as S from "./Markdown.style";
 
+
 function Markdown() {
   const [markdown, setMarkdown] = useState<string>("# 입력해주세요!");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -12,22 +13,24 @@ function Markdown() {
   };
 
   return (
-    <S.Container>
-      <S.Wrapper>
-        <Toolbar textareaRef={textareaRef} />
+    <S.Body>
+      <S.Container>
+        <S.Wrapper>
+          <Toolbar textareaRef={textareaRef} />
 
-        <S.Textarea
-          value={markdown}
-          onChange={handleChange}
-          placeholder="Markdown 문법으로 작성하세요"
-          ref={textareaRef}
-        />
-      </S.Wrapper>
+          <S.Textarea
+            value={markdown}
+            onChange={handleChange}
+            placeholder="Markdown 문법으로 작성하세요"
+            ref={textareaRef}
+          />
+        </S.Wrapper>
 
-      <S.Preview>
-        <MarkdownPreview markdown={markdown} />
-      </S.Preview>
-    </S.Container>
+        <S.Preview>
+          <MarkdownPreview markdown={markdown} />
+        </S.Preview>
+      </S.Container>
+    </S.Body>
   );
 }
 

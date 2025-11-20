@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 export const ToolbarContainer = styled.div`
-    height: 5vh;
+    height: 57px;    
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     padding-left: 20px;
+
+    background: #EAF8F2;
 `;
 
 export const IconButton = styled.button<{ active?: boolean }>`
@@ -16,9 +18,10 @@ export const IconButton = styled.button<{ active?: boolean }>`
     padding: 4px;
     display: flex;
     align-items: center;
-    color: ${({ active }) => (active ? '#0066ff' : '#666666')};
+    color: ${({ active }) => (active ? '#2F7247' : '#60AD8F;')};
     transition: color 0.15s;
 
     &:hover {
-    color: #004ecc;
+    color: #2F7247;
+    }
 `;

@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './components/Markdown/Markdown.tsx'
+import App from './pages/Mission/Commitment/Document/components/Markdown/Markdown.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -9,6 +9,8 @@ type ToolbarProps = {
 function Toolbar({ textareaRef }: ToolbarProps) {
   const [activeIcon, setActiveIcon] = useState<string | null>(null);
 
+  const table = '|  |  |\n|--|--|\n|  |  |\n|  |  |\n|  |  |\n|  |  |\n|  |                         |\n| 보고서 작성일 | YYYY.MM.DD              |'
+
   const flashIcon = (iconKey: string) => {
     setActiveIcon(iconKey); 
     setTimeout(() => {
@@ -34,6 +36,12 @@ function Toolbar({ textareaRef }: ToolbarProps) {
 
     else if (judgment === '2'){
       const newValue = before + insertText + selected + insertText + after;
+      textarea.value = newValue;
+      textarea.focus();
+    }
+
+    else if (judgment === '3'){
+      const newValue = before + selected + insertText + after;
       textarea.value = newValue;
       textarea.focus();
     }
@@ -97,7 +105,7 @@ function Toolbar({ textareaRef }: ToolbarProps) {
         data-aactive={activeIcon === "table"}
         onClick={() => {
           flashIcon("table");
-          handleInsert("/ ", '1');
+          handleInsert('|  |  |\n|--|--|\n|  |  |\n|  |  |\n|  |  |\n|  |  |\n|  |  |\n|  |  |', '3');
         }}
       >
         <Table />

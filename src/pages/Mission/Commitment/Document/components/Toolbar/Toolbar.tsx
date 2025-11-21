@@ -1,25 +1,16 @@
 import { Bold, Italic, Type, List, ListOrdered, Table, SquareMinus } from "lucide-react";
 import { useState } from "react";
 import * as S from "./Toolbar.style";
+import Dropdown from '../../../../../components/Dropdown/Dropdown.tsx'
 
 type ToolbarProps = {
   textareaRef: React.RefObject<HTMLTextAreaElement>;
 };
 
 function Toolbar({ textareaRef }: ToolbarProps) {
-  const [activeIcon, setActiveIcon] = useState<string | null>(null);
+  const [headerLevel, setHeaderLevel] = useState("#");
 
-  const table = '|  |  |\n|--|--|\n|  |  |\n|  |  |\n|  |  |\n|  |  |\n|  |                         |\n| 보고서 작성일 | YYYY.MM.DD              |'
-
-  const flashIcon = (iconKey: string) => {
-    setActiveIcon(iconKey); 
-    setTimeout(() => {
-      setActiveIcon(null);
-    }, 300);
-  };
-
-  const handleInsert = (insertText: string, 
-    judgment: string) => {
+  const handleInsert = (insertText: string, judgment: string) => {
     const textarea = textareaRef.current;
     if (!textarea) return;
 
@@ -32,90 +23,66 @@ function Toolbar({ textareaRef }: ToolbarProps) {
       const newValue = before + insertText + selected + after;
       textarea.value = newValue;
       textarea.focus();
-    }
-
-    else if (judgment === '2'){
+    } else if (judgment === '2'){
       const newValue = before + insertText + selected + insertText + after;
       textarea.value = newValue;
       textarea.focus();
-    }
-
-    else if (judgment === '3'){
+    } else if (judgment === '3'){
       const newValue = before + selected + insertText + after;
       textarea.value = newValue;
       textarea.focus();
     }
-
-
   };
 
-  
+  const headerOptions = ["#", "##", "###", "####", "#####"];
+
   return (
     <S.ToolbarContainer>
       <S.IconButton
-        data-aactive={activeIcon === "type"}
-        onClick={() => {
-          flashIcon("type");
-          handleInsert("# ", '1');
-        }}
       >
-        <Type />
+        <Dropdown 
+          options={headerOptions} 
+          initialSelected={headerLevel} 
+          onSelect={(value) => {
+            setHeaderLevel(value);              // 선택 상태 업데이트
+            handleInsert(value + " ", '1');     // 선택 즉시 textarea에 삽입
+          }}
+        />
+
       </S.IconButton>
+
       <S.IconButton
-        data-active={activeIcon === 'bold'}
-        onClick={() => {
-          flashIcon("bold");
-          handleInsert("**", '2');
-        }}
+        onClick={() => handleInsert("**", '2')}
       >
         <Bold />
       </S.IconButton>
 
       <S.IconButton
-        data-aactive={activeIcon === "italic"}
-        onClick={() => {
-          flashIcon("italic");
-          handleInsert("~~", '2');
-        }}
+        onClick={() => handleInsert("~~", '2')}
       >
         <Italic />
       </S.IconButton>
 
       <S.IconButton
-        data-aactive={activeIcon === "list"}
-        onClick={() => {
-          flashIcon("list");
-          handleInsert("- ", '1');
-        }}
+        onClick={() => handleInsert("- ", '1')}
       >
         <List />
       </S.IconButton>
 
-    
       <S.IconButton
-        data-aactive={activeIcon === "listordered"}
-        onClick={() => {
-          flashIcon("listordered");
-          handleInsert("1. ", '1');
-        }}
+        onClick={() => handleInsert("1. ", '1')}
       >
         <ListOrdered />
       </S.IconButton>
+
       <S.IconButton
-        data-aactive={activeIcon === "table"}
-        onClick={() => {
-          flashIcon("table");
-          handleInsert('|  |  |\n|--|--|\n|  |  |\n|  |  |\n|  |  |\n|  |  |\n|  |  |\n|  |  |', '3');
-        }}
+        onClick={() => handleInsert('|  |  |\n|--|--|\n|  |  |\n|  |  |\n|  |  |\n|  |  |\n|  |  |\n|  |  |', '3')}
       >
         <Table />
       </S.IconButton>
+
       <S.IconButton
-        data-aactive={activeIcon === "squareminus"}
-        onClick={() => {
-          flashIcon("squareminus");
-          handleInsert("---", '1');
-        }}
+        onClick={() => handleInsert("---", '1')}
       >
         <SquareMinus />
       </S.IconButton>
@@ -124,3 +91,4 @@ function Toolbar({ textareaRef }: ToolbarProps) {
 }
 
 export default Toolbar;
+

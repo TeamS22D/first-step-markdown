@@ -3,10 +3,9 @@ import styled from "styled-components";
 export const ToolbarContainer = styled.div`
     height: 57px;    
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 12px;
-    padding-left: 20px;
 
     background: #EAF8F2;
 `;

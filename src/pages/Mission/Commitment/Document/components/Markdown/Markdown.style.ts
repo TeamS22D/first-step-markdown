@@ -12,7 +12,7 @@ export const Container = styled.div`
     display: flex;
     height: 770px;
     color: black;
-    width: 790px;
+    width: 820px;
     box-sizing: border-box;
     border: 1px solid;
     border-radius: 10px;
@@ -45,7 +45,7 @@ export const Textarea = styled.textarea`
 export const Preview = styled.div`
     outline: none;
     flex: 1;
-    padding: 3rem;
+    padding: 2rem;
     padding-top:8rem;
     overflow-y: auto;
     border-left: 2px solid #F2F2F2;
